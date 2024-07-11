@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import './App.css'
 import Button from './Components/Button'
@@ -32,4 +33,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
