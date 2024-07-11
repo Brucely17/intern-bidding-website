@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/main
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -16,10 +21,12 @@ const FormInput = ({ id, label, type, value, onChange }) => (
 
 const FormSelect = ({ id, label, value, onChange, options }) => (
   <div className='flex flex-col mb-6'>
-    <label htmlFor={id} className='text-lg font-semibold mb-2'>{label}</label>
+    {/* <label htmlFor={id} className='text-lg font-semibold mb-2'>{label}</label> */}
+    <label htmlFor={id} className='text-lg font-semibold mb-2 text-[#cccccc]'>{label}</label>
     <select
+    placeholder={label}
       id={id}
-      className='p-2 border bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300'
+      className='p-2 border placeholder-gray-500 bg-white rounded-md focus:outline-none text-gray-700 font-medium focus:ring-2 focus:ring-indigo-500 transition duration-300'
       value={value}
       onChange={onChange}
     >
@@ -63,12 +70,21 @@ const Customer = () => {
     }));
   };
 
+<<<<<<< HEAD
   const previousStep = () => {
     setStep(step - 1);
   }
 
   const nextStep = () => {
       setStep(step + 1);
+=======
+  const nextStep = () => {
+    setAnimate(true); 
+    setTimeout(() => {
+      setStep(step + 1);
+      setAnimate(false); 
+    }, 1000); 
+>>>>>>> origin/main
   };
 
   const handleSubmit = (e) => {
@@ -142,6 +158,7 @@ const Customer = () => {
     { id: 'password', label: "Password", type: "password" },
   ];
 
+
   const companyOptions = [
     { value: 'properitor', label: 'Properitor' },
     { value: 'partnership', label: 'Partnership' },
@@ -151,7 +168,11 @@ const Customer = () => {
   ];
 
   return (
+<<<<<<< HEAD
     <div className='md:flex h-screen'>
+=======
+    <div className='md:flex h-[91.4vh]'>
+>>>>>>> origin/main
       <div className='relative md:w-2/3'>
         <img src='/images/lap.jpg' className='w-full brightness-50 h-full object-cover' alt='Background' />
         <div className='absolute inset-0 flex flex-col items-center justify-center text-center text-[#cccccc]'>
@@ -167,7 +188,11 @@ const Customer = () => {
       
         <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
           {step === 1 && (
+<<<<<<< HEAD
             <div className={`flex flex-col p-5 rounded-lg`}>
+=======
+            <div className={`flex flex-col p-5 rounded-lg ${animate ? 'animate-fadeoutleft' : ''}`}>
+>>>>>>> origin/main
               <h2 className='text-3xl font-mono mb-8 text-[#cccccc]'>Customer Details</h2>
               {fields.slice(0, 3).map((field) => (
                 <FormInput
@@ -183,7 +208,11 @@ const Customer = () => {
                 <button
                   type='button'
                   onClick={nextStep}
+<<<<<<< HEAD
                   className=' bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
+=======
+                  className='flex items-center bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
+>>>>>>> origin/main
                 >
                   Next
                 </button>
@@ -192,7 +221,11 @@ const Customer = () => {
           )}
 
           {step === 2 && (
+<<<<<<< HEAD
             <div className={`flex flex-col p-5 rounded-lg `}>
+=======
+            <div className={`flex flex-col p-5 rounded-lg ${animate ? 'animate-fadeinright' : ''}`}>
+>>>>>>> origin/main
               <h2 className='text-3xl font-bold mb-8 text-[#cccccc]'>Company Details</h2>
               <FormSelect
                 id="companyType"
@@ -214,6 +247,7 @@ const Customer = () => {
               <center className='flex justify-center gap-5'>
                 <button
                   type='button'
+<<<<<<< HEAD
                   onClick={previousStep}
                   className='bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
                 >
@@ -223,6 +257,10 @@ const Customer = () => {
                   type='button'
                   onClick={nextStep}
                   className='bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
+=======
+                  onClick={nextStep}
+                  className='flex items-center bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
+>>>>>>> origin/main
                 >
                   Next
                 </button>
@@ -231,7 +269,11 @@ const Customer = () => {
           )}
 
           {step === 3 && (
+<<<<<<< HEAD
             <div className={`flex flex-col `}>
+=======
+            <div className={`flex flex-col ${animate ? 'animate-fadeinright' : ''}`}>
+>>>>>>> origin/main
               <h2 className='text-3xl font-bold mb-8 text-[#cccccc]'>Contact Details</h2>
               {fields.slice(6, 10).map((field) => (
                 <FormInput
