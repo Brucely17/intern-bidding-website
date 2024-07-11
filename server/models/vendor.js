@@ -72,6 +72,7 @@ const vendorSchema = new mongoose.Schema({
     
     willingToSell: {
         type: Boolean,
+        type: String,
         required: true
     },
 
@@ -98,6 +99,7 @@ const vendorSchema = new mongoose.Schema({
         }
     },
     earOfRegistration: {
+    yearOfRegistration: {
         type: Number,
         required: true
     },
@@ -117,6 +119,14 @@ const vendorSchema = new mongoose.Schema({
     adminComments: {
         type: String
     }
+    // verificationStatus: {
+    //     type: String,
+    //     enum: ['Pending', 'Approved', 'Rejected'],
+    //     default: 'Pending'
+    // },
+    // adminComments: {
+    //     type: String
+    // }
     
 });
 

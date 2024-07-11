@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const FormInput = ({ id, label, type, value, onChange }) => (
   <div className='flex flex-col mb-6 mr-4 relative'>
@@ -87,7 +88,36 @@ const Vendor = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form State:', formState);
+    const {
+      willingToSell,
+      vendorBankDetails,
+      yearOfRegistration,
+      documents,
+      vendorType,
+      subCategory,
+    } = formState;
+
+    const formDataDict = {
+      willingToSell,
+      vendorBankDetails,
+      yearOfRegistration,
+      documents,
+      vendorType,
+      subCategory,
+    }
+
+    submitVendorData(formDataDict);
   };
+
+  const submitVendorData = async (formData) => {
+    try{
+      console.log(formData);
+      const response = await axios.post('/vendor-details', formData)
+      console.log(response);
+    } catch(e){
+      console.log("An error occured : ",error);
+    }
+  }
 
   const vendorFields = [
     { id: 'willingToSell', label: 'Willing to sell the products', type: 'text' },
