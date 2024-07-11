@@ -115,7 +115,7 @@ const Vendor = () => {
   ];
 
   return (
-    <div className='md:flex h-[92vh]'>
+    <div className='md:flex h-screen'>
     
       <div className='relative md:w-2/3'>
         <img src='/images/lap.jpg' className='w-full brightness-50 h-full object-cover' alt='Background' />
@@ -128,7 +128,7 @@ const Vendor = () => {
         </div>
       </div>
 
-      <div className='flex flex-col w-full md:w-1/3 bg-[#3F51B5] px-10 min-h-[65vh] md:h-full py-12'>
+      <div className='flex flex-col w-full md:w-1/3 bg-[#3F51B5] px-10 min-h-[65vh] md:h-full pt-44 py-12'>
         <form onSubmit={handleSubmit} className='flex flex-col gap-8 mt-16'>
           {step === 1 && (
             <div className={`flex flex-col p-5 rounded-lg ${animate ? 'animate-fadeoutleft' : ''}`}>
@@ -147,17 +147,17 @@ const Vendor = () => {
                 <button
                   type='button'
                   onClick={nextStep}
-                  className='flex items-center bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
+                  className=' bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
                 >
                   Next
-                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+                 
                 </button>
               </center>
             </div>
           )}
 
           {step === 2 && (
-            <div className={`flex flex-col p-5 rounded-lg ${animate ? 'animate-fadeinright' : ''}`}>
+            <div className={`flex flex-col rounded-lg `}>
             <h2 className='text-3xl font-bold mb-4  text-[#cccccc]  '>Bank Details</h2>
             <div className='flex flex-col max-h-[500px] overflow-y-auto'> 
               {vendorFields.slice(1, 7).map((field) => (
@@ -171,14 +171,20 @@ const Vendor = () => {
                 />
 
               ))}
-              <center>
+              <center className='flex justify-center gap-10'>
+                <button
+                  type='button'
+                  onClick={() => setStep(step - 1)}
+                  className=' bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
+                >
+                  Back
+                </button>
                 <button
                   type='button'
                   onClick={() => setStep(step + 1)}
-                  className='flex items-center bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
+                  className=' bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
                 >
                   Next
-                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
                 </button>
               </center>
             </div>
@@ -212,13 +218,19 @@ const Vendor = () => {
                   Upload
                 </label>
               </div>
-              <center>
+              <center className='flex justify-center gap-10'>
+              <button
+              onClick={() => setStep(step - 1)}
+                  type='submit'
+                  className='flex items-center bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
+                >
+                  Back
+                </button>
                 <button
                   type='submit'
                   className='flex items-center bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
                 >
                   Submit
-                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                 </button>
               </center>
             </div>

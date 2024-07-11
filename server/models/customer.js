@@ -46,32 +46,32 @@ const customerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    forgotPasswordOption: {
-        type: String,
-        enum: ['Mail OTP', 'Mobile OTP'],
-        required: true
-    },
-    documents: {
-        gst: {
-            type: String, 
-            required: true
-        }, 
-        msme: {
-            type: String 
-        },
-        companyRegistrationDocs: {
-            type: String, 
-            required: true
-        }
-    },
-    verificationStatus: {
-        type: String,
-        enum: ['Pending', 'Approved', 'Rejected'],
-        default: 'Pending'
-    },
-    adminComments: {
-        type: String
-    }
+    // forgotPasswordOption: {
+    //     type: String,
+    //     enum: ['Mail OTP', 'Mobile OTP'],
+    //     required: true
+    // },
+    // documents: {
+    //     gst: {
+    //         type: String, 
+    //         required: true
+    //     }, 
+    //     msme: {
+    //         type: String 
+    //     },
+    //     companyRegistrationDocs: {
+    //         type: String, 
+    //         required: true
+    //     }
+    // },
+    // verificationStatus: {
+    //     type: String,
+    //     enum: ['Pending', 'Approved', 'Rejected'],
+    //     default: 'Pending'
+    // },
+    // adminComments: {
+    //     type: String
+    // }
 
 });
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const FormInput = ({ id, label, type, value, onChange }) => (
   <div className='flex flex-col mb-6'>
@@ -62,12 +63,12 @@ const Customer = () => {
     }));
   };
 
+  const previousStep = () => {
+    setStep(step - 1);
+  }
+
   const nextStep = () => {
-    setAnimate(true); 
-    setTimeout(() => {
       setStep(step + 1);
-      setAnimate(false); 
-    }, 1000); 
   };
 
   const handleSubmit = (e) => {
@@ -75,19 +76,56 @@ const Customer = () => {
     if (step < 3) {
       nextStep();
     } else {
+      const {
+        customerName,
+        customerAddress,
+        customerGstNo,
+        companyType,
+        companyRegNo,
+        authorizedPersonName,
+        mobileNo,
+        alternateContactNo,
+        mailId,
+        userId,
+        password,
+        files,
+      } = formState;
+  
+      const formDataDict = {
+        customerName,
+        customerAddress,
+        customerGstNo,
+        companyType,
+        companyRegNo,
+        authorizedPersonName,
+        mobileNo,
+        alternateContactNo,
+        mailId,
+        userId,
+        password,
+      };
+  
       const formData = new FormData();
-      Object.entries(formState).forEach(([key, value]) => {
-        if (key === 'files' && value) {
-          Array.from(value).forEach((file, index) => {
-            formData.append(`file_${index}`, file);
-          });
-        } else {
-          formData.append(key, value);
-        }
+      Object.entries(formDataDict).forEach(([key, value]) => {
+        formData.append(key, value);
       });
-      for (let [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
-      }
+  
+      // console.log(formDataDict);
+
+      submitCustomerData(formDataDict);
+      //sending to server
+      // submitCustomerData(formData)
+    }
+  };
+  
+
+  const submitCustomerData = async (formData) => {
+    try {
+      console.log(formData);
+      const response = await axios.post('http://localhost:5000/customer-details', formData);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error posting customer details:', error);
     }
   };
 
@@ -113,7 +151,7 @@ const Customer = () => {
   ];
 
   return (
-    <div className='md:flex h-[91.4vh]'>
+    <div className='md:flex h-screen'>
       <div className='relative md:w-2/3'>
         <img src='/images/lap.jpg' className='w-full brightness-50 h-full object-cover' alt='Background' />
         <div className='absolute inset-0 flex flex-col items-center justify-center text-center text-[#cccccc]'>
@@ -125,10 +163,11 @@ const Customer = () => {
         </div>
       </div>
 
-      <div className='flex flex-col w-full md:w-1/3 bg-[#3F51B5] px-10 py-12'>
-        <form onSubmit={handleSubmit} className='flex flex-col gap-8 mt-16'>
+      <div className='flex flex-col w-full md:w-1/3 bg-[#3F51B5] relative pt-64 px-10 py-12'>
+      
+        <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
           {step === 1 && (
-            <div className={`flex flex-col p-5 rounded-lg ${animate ? 'animate-fadeoutleft' : ''}`}>
+            <div className={`flex flex-col p-5 rounded-lg`}>
               <h2 className='text-3xl font-mono mb-8 text-[#cccccc]'>Customer Details</h2>
               {fields.slice(0, 3).map((field) => (
                 <FormInput
@@ -144,18 +183,8 @@ const Customer = () => {
                 <button
                   type='button'
                   onClick={nextStep}
-                  className='flex items-center bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
+                  className=' bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6 mr-2"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
                   Next
                 </button>
               </center>
@@ -163,7 +192,7 @@ const Customer = () => {
           )}
 
           {step === 2 && (
-            <div className={`flex flex-col p-5 rounded-lg ${animate ? 'animate-fadeinright' : ''}`}>
+            <div className={`flex flex-col p-5 rounded-lg `}>
               <h2 className='text-3xl font-bold mb-8 text-[#cccccc]'>Company Details</h2>
               <FormSelect
                 id="companyType"
@@ -182,11 +211,18 @@ const Customer = () => {
                   onChange={handleChange}
                 />
               ))}
-              <center>
+              <center className='flex justify-center gap-5'>
+                <button
+                  type='button'
+                  onClick={previousStep}
+                  className='bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
+                >
+                  Back
+                </button>
                 <button
                   type='button'
                   onClick={nextStep}
-                  className='flex items-center bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
+                  className='bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
                 >
                   Next
                 </button>
@@ -195,7 +231,7 @@ const Customer = () => {
           )}
 
           {step === 3 && (
-            <div className={`flex flex-col ${animate ? 'animate-fadeinright' : ''}`}>
+            <div className={`flex flex-col `}>
               <h2 className='text-3xl font-bold mb-8 text-[#cccccc]'>Contact Details</h2>
               {fields.slice(6, 10).map((field) => (
                 <FormInput
@@ -217,8 +253,16 @@ const Customer = () => {
                   Upload
                 </label>
               </div>
-              <center>
+              <center className='flex justify-center gap-10'>
                 <button
+                  type='button'
+                  onClick={previousStep}
+                  className='bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
+                >
+                  Back
+                </button>
+                <button
+                onClick={handleSubmit}
                   type='submit'
                   className='bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
                 >
