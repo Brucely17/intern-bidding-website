@@ -2,10 +2,11 @@ import { useState } from 'react'
 import './App.css'
 import Button from './Components/Button'
 import Customer from './Components/Customer';
+import Vendor from './Components/Vendor';
 
 function App() {
   const [vendor, setVendor] = useState(false);
-  const [customer, setCustomer] = useState(false);
+  const [customer, setCustomer] = useState(true);
 
   function handleVendor() {
       setVendor(true);
@@ -24,7 +25,7 @@ function App() {
         <Button name={"Customer"} handleClick={() => handleCustomer()} />
       </div>
       <div>
-        {vendor && !customer ? "vendor" : ""}
+        {vendor && !customer ? <Vendor/> : ""}
         {customer && !vendor ? <Customer/> : ""}
       </div>
     </>
