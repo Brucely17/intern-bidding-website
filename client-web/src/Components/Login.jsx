@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../AuthContext';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [captchaValue, setCaptchaValue] = useState(null);
+  const navigate = useNavigate();
+  const {setUser} = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,8 +20,11 @@ const Login = () => {
           username,
           password,
         });
+        console.log(response);
         if (response.status === 200) {
           alert('Login successful');
+          setUser(response.data)
+          navigate('/dashboard')
         } else {
           alert('Login failed');
         }

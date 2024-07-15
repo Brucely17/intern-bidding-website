@@ -1,5 +1,9 @@
 <<<<<<< HEAD
 =======
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+// import { useNavigate } from 'react-router-dom';
+
 
 
 >>>>>>> origin/main
@@ -140,6 +144,13 @@ const Customer = () => {
       console.log(formData);
       const response = await axios.post('http://localhost:5000/customer-details', formData);
       console.log(response.data);
+      console.log(response.data.message);
+      if(response.data.message === 'Customer details saved successfully'){
+        alert('Customer details saved successfully');
+        // setRedirect(true);
+      } else {
+        alert('Some error occured please try again later....');
+      }
     } catch (error) {
       console.error('Error posting customer details:', error);
     }
