@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import React, { useContext, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
@@ -24,7 +23,7 @@ const Login = () => {
         if (response.status === 200) {
           alert('Login successful');
           setUser(response.data)
-          navigate('/dashboard')
+          navigate('/')
         } else {
           alert('Login failed');
         }
@@ -74,7 +73,7 @@ const Login = () => {
               required
             />
           </div>
-          <div className='flex flex-col mb-6'>
+          <div className='flex flex-col mb-6 mx-auto'>
             <ReCAPTCHA
               sitekey="6LdS-A4qAAAAADwFY-7X0vWGIVdqEcCZcnb2vL2o"
               onChange={(value) => setCaptchaValue(value)}

@@ -9,7 +9,6 @@ const vendorSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-
     gstNo: {
         type: String,
         required: true
@@ -69,13 +68,10 @@ const vendorSchema = new mongoose.Schema({
             required: true
         }
     },
-    
     willingToSell: {
         type: Boolean,
-        type: String,
         required: true
     },
-
     bankDetails: {
         accountName: {
             type: String,
@@ -98,7 +94,6 @@ const vendorSchema = new mongoose.Schema({
             required: function() { return this.willingToSell; }
         }
     },
-    earOfRegistration: {
     yearOfRegistration: {
         type: Number,
         required: true
@@ -119,18 +114,8 @@ const vendorSchema = new mongoose.Schema({
     adminComments: {
         type: String
     }
-    // verificationStatus: {
-    //     type: String,
-    //     enum: ['Pending', 'Approved', 'Rejected'],
-    //     default: 'Pending'
-    // },
-    // adminComments: {
-    //     type: String
-    // }
-    
 });
 
-// Create the Vendor model
 const Vendor = mongoose.model('Vendor', vendorSchema);
 
 module.exports = Vendor;

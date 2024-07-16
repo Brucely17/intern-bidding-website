@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import './App.css';
@@ -15,9 +14,6 @@ axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.withCredentials = true;
 
 function App() {
-  const [vendor, setVendor] = useState(false);
-  const [customer, setCustomer] = useState(true);
-  const [login, setLogin] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -26,34 +22,20 @@ function App() {
   }, [location.pathname]);
 
   function handleVendor() {
-    setVendor(true);
-    setCustomer(false);
-    setLogin(false);
     navigate('/vendor');
   }
 
   function handleCustomer() {
-    setCustomer(true);
-    setVendor(false);
-    setLogin(false);
     navigate('/customer');
   }
 
   function handleLogin() {
-    setLogin(true);
-    setVendor(false);
-    setCustomer(false);
     navigate('/login');
   }
 
   return (
     <>
-      <div className='relative'>
-        <div className='p-5 flex gap-10 justify-center absolute z-10 md:right-36 top-24'>
-          <Button name={"Vendor"} handleClick={handleVendor} />
-          <Button name={"Customer"} handleClick={handleCustomer} />
-          <Button name={"Login"} handleClick={handleLogin} />
-      {location.pathname === '/vendor' || location.pathname === '/customer' || location.pathname === '/login' || location.pathname === '/' &&   (
+      {/* {location.pathname === '/vendor' || location.pathname === '/customer' || location.pathname === '/login' || location.pathname === '/' &&   (
         <div className='relative'>
           <div className='p-5 flex gap-10 justify-center absolute z-10 md:right-36 top-24'>
             <Button name={"Vendor"} handleClick={handleVendor} />
@@ -61,17 +43,13 @@ function App() {
             <Button name={"Login"} handleClick={handleLogin} />
           </div>
         </div>
-      </div>
-      )}
+      )} */}
       <div>
-        {vendor && !customer && !login ? <Vendor /> : ""}
-        {customer && !vendor && !login ? <Customer /> : ""}
-        {login && !vendor && !customer ? <Login /> : ""}
         <Routes>
           <Route path="/vendor" element={<Vendor />} />
           <Route path="/customer" element={<Customer />} />
           <Route path="/login" element={<Login />} />
-          <Route path='/dashboard' element={<Dashboard/>}/>
+          <Route path='/' element={<Dashboard/>}/>
           <Route path='/bidsearchform' element={<BidSearchForm/>}/>
         </Routes>
       </div>
@@ -79,7 +57,6 @@ function App() {
   );
 }
 
-export default App;
 function MainApp() {
   return (
     <AuthProvider>

@@ -5,12 +5,10 @@ const cors = require('cors');
 const Customer = require('./models/customer');
 const dotenv = require('dotenv');
 const Vendor = require('./models/vendor');
-const bcrypt = require('bcrypt'); // For password hashing
 const bcrypt = require('bcrypt'); 
 const jwt = require('jsonwebtoken');
 const cookieParser = require("cookie-parser");
 
-// Load environment variables from .env file
 dotenv.config();
 
 const app = express();
@@ -20,18 +18,14 @@ const jwtSecret = "vishwaaArumugam";
 
 
 
-// MongoDB connection string
 const uri = process.env.MONGODB_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error(err));
 
-// Enable CORS with specific origin and credentials
 
 
 app.use(cors({
-  origin: 'http://localhost:5173', // your frontend origin
-  credentials: true // allow credentials (cookies, authorization headers, etc.)
   origin: 'http://localhost:5173', 
   credentials: true,
   
@@ -41,7 +35,6 @@ app.use(cookieParser());
 
 
 
-// Endpoint to handle vendor details
 app.post('/vendor-details', async (req, res) => {
   try{
     const formData = req.body;
@@ -59,13 +52,11 @@ app.post('/vendor-details', async (req, res) => {
   }
 });
 
-// Endpoint to handle customer details
 
 app.post('/customer-details', async (req, res) => {
   try {
     const formData = req.body;
     console.log(formData);
-    const hashedPassword = await bcrypt.hash(formData.password, 10); // Hash the password before saving
     const hashedPassword =  bcrypt.hashSync(formData.password, bcryptSalt); 
     const newCustomer = await Customer.create({
       name: formData.customerName,
@@ -78,7 +69,6 @@ app.post('/customer-details', async (req, res) => {
       alternateContactNo: formData.alternateContactNo,
       email: formData.mailId,
       userId: formData.userId,
-      password: hashedPassword, // Save the hashed password
       password: hashedPassword, 
     });
     res.status(201).json({ message: 'Customer details saved successfully' });
@@ -88,7 +78,6 @@ app.post('/customer-details', async (req, res) => {
   }
 });
 
-// Endpoint for login
 
 app.post('/login', async (req, res) => {
   try {
@@ -99,14 +88,12 @@ app.post('/login', async (req, res) => {
     if (!customer) {
       return res.status(400).json({ error: 'Invalid username or password' });
     }
-    const isPasswordValid = await bcrypt.compare(password, customer.password);
 
     const isPasswordValid = bcrypt.compareSync(password, customer.password);
 
     if (!isPasswordValid) {
       return res.status(400).json({ error: 'Invalid username or password' });
     }
-    res.status(200).json({ message: 'Login successful' });
 
     const tokenPayload = {
       email: customer.email,

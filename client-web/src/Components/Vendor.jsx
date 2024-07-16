@@ -146,11 +146,7 @@ const Vendor = () => {
   ];
 
   return (
-<<<<<<< HEAD
     <div className='md:flex h-screen'>
-=======
-    <div className='md:flex h-[92vh]'>
->>>>>>> origin/main
     
       <div className='relative md:w-2/3'>
         <img src='/images/lap.jpg' className='w-full brightness-50 h-full object-cover' alt='Background' />
@@ -163,11 +159,7 @@ const Vendor = () => {
         </div>
       </div>
 
-<<<<<<< HEAD
       <div className='flex flex-col w-full md:w-1/3 bg-[#3F51B5] px-10 min-h-[65vh] md:h-full pt-44 py-12'>
-=======
-      <div className='flex flex-col w-full md:w-1/3 bg-[#3F51B5] px-10 min-h-[65vh] md:h-full py-12'>
->>>>>>> origin/main
         <form onSubmit={handleSubmit} className='flex flex-col gap-8 mt-16'>
           {step === 1 && (
             <div className={`flex flex-col p-5 rounded-lg ${animate ? 'animate-fadeoutleft' : ''}`}>
@@ -186,11 +178,7 @@ const Vendor = () => {
                 <button
                   type='button'
                   onClick={nextStep}
-<<<<<<< HEAD
                   className=' bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
-=======
-                  className='flex items-center bg-indigo-500 text-[#cccccc] border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
->>>>>>> origin/main
                 >
                   Next
                  
@@ -199,7 +187,6 @@ const Vendor = () => {
             </div>
           )}
 
-<<<<<<< HEAD
           {step === 2 && (
             <div className={`flex flex-col rounded-lg `}>
             <h2 className='text-3xl font-bold mb-4  text-[#cccccc]  '>Bank Details</h2>
@@ -236,40 +223,6 @@ const Vendor = () => {
           )}
 
           {step === 3 && (
-=======
-          
-    {step === 2 && (
-             <>
-             <h2 className='text-3xl font-bold mb-2  text-white  '>Bank Details</h2>
-             <div className='flex flex-col max-h-[320px] overflow-y-auto'> 
-              
-               {vendorFields.slice(1, 7).map((field) => (
-                 <FormInput
-                   key={field.id}
-                   id={field.id}
-                   label={field.label}
-                   type={field.type}
-                   value={field.id.startsWith('vendorBankDetails') ? formState.vendorBankDetails[field.id.split('.')[1]] : formState[field.id]}
-                   onChange={handleChange}
-                 />
-
-               ))}
-               
-             </div>
-             <center>
-                 <button
-                   type='button'
-                   onClick={() => setStep(step + 1)}
-                   className='flex items-center bg-indigo-500 text-white border border-indigo-700 p-2 rounded-xl text-xl w-32 mt-8 transition duration-300 hover:bg-indigo-600'
-                 >
-                   Next
-                   <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
-                 </button>
-               </center>
-           </>
-        )}
-{step === 3 && (
->>>>>>> origin/main
             <div className={`flex flex-col ${animate ? 'animate-fadeinright' : ''}`}>
               <h2 className='text-3xl font-bold mb-8 text-[#cccccc]'>Additional Details</h2>
               <FormSelect
