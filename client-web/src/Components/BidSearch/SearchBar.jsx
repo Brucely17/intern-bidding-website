@@ -20,9 +20,14 @@ const SearchBar = ({ filters, setFilters, handleSearch }) => {
   };
 
   return (
-    <Box sx={{ p: 2, display: 'flex',justifyContent :'flex-end'}}>
+    <Box sx={{
+      
+      display: 'flex',
+      // justifyContent: 'flex-end',
+     
+    }}>
       <Grid container spacing={2} alignItems="center">
-        <Grid item xs={12} sm={2}>
+        <Grid item xs={12} sm={3}>
           <Autocomplete
             options={categories}
             getOptionLabel={(option) => option}
@@ -53,7 +58,7 @@ const SearchBar = ({ filters, setFilters, handleSearch }) => {
             )}
           />
         </Grid>
-        <Grid item xs={12} sm={2}>
+        <Grid item xs={12} sm={3}>
           <TextField
             fullWidth
             label="Product Title"
@@ -78,9 +83,10 @@ const SearchBar = ({ filters, setFilters, handleSearch }) => {
         <Grid item>
           <Button
             variant="contained"
-            color="primary"
+            
             onClick={handleSearch}
-            sx={{ height: '40px', marginTop: '16px' }}
+            sx={{ height: '40px', marginTop: '10px' }}
+            style={{backgroundColor: '#757de8', color: '#FFFFFF'}}
           >
             Search
           </Button>

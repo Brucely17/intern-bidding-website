@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Box } from '@mui/material';
 import FilterSideBar from './FilterSideBar';
 import SearchBar from './SearchBar';
@@ -24,6 +24,8 @@ const BidSearchForm = () => {
 
   const [bids, setBids] = useState([]);
 
+ 
+
   const handleSearch = async () => {
     try {
       const response = await fetch('http://localhost:5000/bidsearch', {
@@ -40,11 +42,29 @@ const BidSearchForm = () => {
       console.error('Error fetching bids:', error);
     }
   };
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        const response  = await fetch('http://localhost:5000/bidsearch', {
+          method: 'POST',
+          body: JSON.stringify(filters),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setBids(data);
+      } catch (error) {
+        console.error('Error fetching all bids:', error);
+      }
+    };
+    fetchData();
+  },[]);
 
   return (
     <Box sx={{ display: 'flex' }}>
       <FilterSideBar filters={filters} setFilters={setFilters} />
-      <Box sx={{ flexGrow: 1 }}>
+      <Box  sx={{ flexGrow: 1 }}>
         <SearchBar filters={filters} setFilters={setFilters} handleSearch={handleSearch} />
         <BidList bids={bids} />
       </Box>

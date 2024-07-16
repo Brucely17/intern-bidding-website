@@ -22,7 +22,7 @@ const FilterSideBar = ({ filters, setFilters }) => {
 
   return (
     <Box sx={{ p: 2, width: '200px' }}>
-      <Typography variant="h6">Filters</Typography>
+      <Typography variant="h6">Bid Listings</Typography>
       <form onSubmit={handleSubmit}>
         <FormControl component="fieldset" sx={{ mt: 2 }}>
          
