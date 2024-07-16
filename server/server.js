@@ -8,6 +8,7 @@ const Vendor = require('./models/vendor');
 const bcrypt = require('bcrypt'); 
 const jwt = require('jsonwebtoken');
 const cookieParser = require("cookie-parser");
+const bidSearchSchema=require('./models/BidSearchSchema');
 
 dotenv.config();
 
@@ -138,6 +139,65 @@ app.get('/profile', (req, res) => {
 app.post('/logout', (req, res) => {
     res.cookie('token', '').json(true);
 });
+
+//now stating routing 
+app.post('/bidsearch', async (req, res) => {
+  const filters = req.body;
+  console.log("Filters:",filters);
+
+  try {
+    const searchQuery = {};
+
+    if (filters.productCategory) {
+      searchQuery.productCategory = filters.productCategory;
+    }
+    if (filters.bidStart) {
+      searchQuery.bidStart = { $gte: new Date(filters.bidStart) };
+    }
+    if (filters.bidEnd) {
+      searchQuery.bidEnd = { $lte: new Date(filters.bidEnd) };
+    }
+    if (filters.productTitle) {
+      searchQuery.productTitle = { $regex: filters.productTitle, $options: 'i' };
+    }
+    if (filters.productDescription) {
+      searchQuery.productDescription = { $regex: filters.productDescription, $options: 'i' };
+    }
+    if (filters.totalQty) {
+      searchQuery.totalQty = filters.totalQty;
+    }
+    if (filters.budgetDisclosure) {
+      searchQuery.budgetDisclosure = filters.budgetDisclosure;
+    }
+    if (filters.budget) {
+      searchQuery.budget = filters.budget;
+    }
+    if (filters.warrantyType) {
+      searchQuery.warrantyType = filters.warrantyType;
+    }
+    if (filters.warrantyPeriod) {
+      searchQuery.warrantyPeriod = filters.warrantyPeriod;
+    }
+    if (filters.vendorLocation) {
+      searchQuery.vendorLocation = filters.vendorLocation;
+    }
+    if (filters.experienceExceptions) {
+      searchQuery.experienceExceptions = filters.experienceExceptions;
+    }
+    if (filters.bidStatus) {
+      searchQuery.bidStatus = filters.bidStatus;
+    }
+    
+    const results = await bidSearchSchema.find(searchQuery);
+    console.log("ResultS;",results);
+    res.json(results);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+
+// This is regarding bidsearch - search ing and filtering 
 
 
 app.listen(PORT, () => {

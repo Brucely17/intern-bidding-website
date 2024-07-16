@@ -1,0 +1,37 @@
+productCategory,bidStart,bidEnd,productTitle,productDescription,totalQty,budgetDisclosure,budget,warrantyType,warrantyPeriod,vendorLocation,experienceExceptions,bidStatus
+IT,2024-07-01T09:00:00Z,2024-07-10T17:00:00Z,Laptops,High performance laptops for office use,100,Yes,500000,OEM,1,Anywhere from India,None,Published
+Electrical,2024-06-25T10:00:00Z,2024-07-05T15:00:00Z,Cables,High quality electrical cables,1000,No,,OEM,2,Anywhere from State,None,Published
+Furniture,2024-06-20T08:00:00Z,2024-07-01T17:00:00Z,Office Desks,Ergonomic office desks,50,Yes,200000,Vendor,3,Same City,None,Published
+Civil,2024-06-18T09:00:00Z,2024-06-30T17:00:00Z,Construction Materials,High quality construction materials,500,No,,Vendor,5,Anywhere from India,None,Published
+IT,2024-07-01T09:00:00Z,2024-07-10T17:00:00Z,Laptops,High performance laptops for office use,100,Yes,500000,OEM,1,Anywhere from India,None,Published
+Electrical,2024-06-25T10:00:00Z,2024-07-05T15:00:00Z,Cables,High quality electrical cables,1000,No,,OEM,2,Anywhere from State,None,Published
+Furniture,2024-06-20T08:00:00Z,2024-07-01T17:00:00Z,Office Desks,Ergonomic office desks,50,Yes,200000,Vendor,3,Same City,None,Published
+Civil,2024-06-18T09:00:00Z,2024-06-30T17:00:00Z,Construction Materials,High quality construction materials,500,No,,Vendor,5,Anywhere from India,None,Published
+IT,2024-07-05T10:00:00Z,2024-07-15T15:00:00Z,Printers,Advanced laser printers for office use,200,Yes,300000,OEM,1,Anywhere from India,None,Published
+Electrical,2024-07-10T08:00:00Z,2024-07-20T17:00:00Z,Light Fixtures,Energy-efficient light fixtures,300,No,,Vendor,3,Same City,None,Published
+Furniture,2024-07-12T09:00:00Z,2024-07-25T17:00:00Z,Conference Tables,Modern conference tables,20,Yes,100000,Vendor,2,Anywhere from State,None,Published
+Civil,2024-07-01T09:00:00Z,2024-07-10T17:00:00Z,Bricks,High-density construction bricks,1000,No,,OEM,1,Anywhere from India,None,Published
+IT,2024-06-30T10:00:00Z,2024-07-09T15:00:00Z,Software Licenses,Enterprise software licenses,50,Yes,700000,OEM,2,Anywhere from State,None,Published
+Electrical,2024-06-28T08:00:00Z,2024-07-07T17:00:00Z,Switchgear,Industrial switchgear components,500,Yes,400000,Vendor,3,Same City,None,Published
+Furniture,2024-07-02T09:00:00Z,2024-07-12T17:00:00Z,Office Chairs,Ergonomic office chairs,100,Yes,150000,OEM,1,Anywhere from India,None,Published
+Civil,2024-06-29T10:00:00Z,2024-07-09T15:00:00Z,Steel Beams,Structural steel beams,200,No,,Vendor,2,Anywhere from State,None,Published
+IT,2024-07-08T08:00:00Z,2024-07-18T17:00:00Z,Networking Equipment,Advanced networking equipment,30,Yes,600000,Vendor,3,Same City,None,Published
+Electrical,2024-07-15T09:00:00Z,2024-07-25T17:00:00Z,Generators,Industrial generators,10,No,,OEM,5,Anywhere from India,None,Published
+Furniture,2024-07-18T10:00:00Z,2024-07-28T15:00:00Z,Sofas,Modern office sofas,50,Yes,250000,Vendor,3,Same City,None,Published
+Civil,2024-07-11T08:00:00Z,2024-07-20T17:00:00Z,Cement,High-grade cement for construction,1000,Yes,300000,Vendor,2,Anywhere from State,None,Published
+IT,2024-07-09T09:00:00Z,2024-07-19T17:00:00Z,Server Racks,Data center server racks,20,Yes,800000,OEM,3,Same City,None,Published
+Electrical,2024-07-05T10:00:00Z,2024-07-15T15:00:00Z,Transformers,Power transformers,50,No,,Vendor,2,Anywhere from India,None,Published
+Furniture,2024-07-01T08:00:00Z,2024-07-10T17:00:00Z,Workstations,Modular office workstations,100,Yes,180000,OEM,1,Anywhere from State,None,Published
+Civil,2024-07-03T09:00:00Z,2024-07-13T17:00:00Z,Pipes,High-quality plumbing pipes,300,No,,Vendor,4,Same City,None,Published
+IT,2024-06-28T10:00:00Z,2024-07-08T15:00:00Z,Security Software,Enterprise security software,50,Yes,400000,OEM,2,Anywhere from India,None,Published
+Electrical,2024-06-26T08:00:00Z,2024-07-06T17:00:00Z,Solar Panels,High-efficiency solar panels,100,Yes,600000,Vendor,3,Same City,None,Published
+Furniture,2024-07-04T09:00:00Z,2024-07-14T17:00:00Z,Storage Cabinets,Office storage cabinets,50,Yes,120000,OEM,1,Anywhere from State,None,Published
+Civil,2024-06-30T10:00:00Z,2024-07-10T15:00:00Z,Roofing Materials,Weather-resistant roofing materials,200,No,,Vendor,2,Anywhere from India,None,Published
+IT,2024-07-10T08:00:00Z,2024-07-20T17:00:00Z,Backup Solutions,Cloud backup solutions,30,Yes,500000,OEM,3,Same City,None,Published
+Electrical,2024-07-12T09:00:00Z,2024-07-22T17:00:00Z,Electrical Panels,Industrial electrical panels,20,Yes,300000,Vendor,2,Anywhere from State,None,Published
+Furniture,2024-07-06T08:00:00Z,2024-07-16T15:00:00Z,Reception Desks,Modern office reception desks,10,Yes,80000,OEM,1,Anywhere from India,None,Published
+Civil,2024-07-09T09:00:00Z,2024-07-19T17:00:00Z,Windows,Energy-efficient windows,100,Yes,150000,Vendor,3,Same City,None,Published
+IT,2024-07-15T10:00:00Z,2024-07-25T15:00:00Z,Virtualization Software,Enterprise virtualization software,50,Yes,700000,OEM,2,Anywhere from State,None,Published
+Electrical,2024-07-18T08:00:00Z,2024-07-28T17:00:00Z,Power Cables,Heavy-duty power cables,200,Yes,400000,Vendor,3,Same City,None,Published
+Furniture,2024-07-13T09:00:00Z,2024-07-23T17:00:00Z,Bookcases,Office bookcases,30,Yes,100000,OEM,1,Anywhere from India,None,Published
+Civil,2024-07-17T10:00:00Z,2024-07-27T15:00:00Z,Doors,Durable office doors,50,Yes,200000,Vendor,2,Anywhere from State,None,Published

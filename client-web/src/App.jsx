@@ -8,7 +8,7 @@ import Login from './Components/Login';
 import Dashboard from './Components/Dashboard';
 import axios from 'axios';
 import { AuthProvider } from './AuthContext';
-import BidSearchForm from './Components/BidSearchForm';
+import BidSearchForm from './Components/BidSearch/BidSearchForm';
 
 axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.withCredentials = true;
