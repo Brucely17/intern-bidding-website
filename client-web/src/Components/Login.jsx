@@ -75,7 +75,7 @@ const Login = () => {
           </div>
           <div className='flex flex-col mb-6 mx-auto'>
             <ReCAPTCHA
-              sitekey="6LdS-A4qAAAAADwFY-7X0vWGIVdqEcCZcnb2vL2o"
+              sitekey="6LcLsxIqAAAAACUbbnlynxYBWPERt-_NZS_rY0IH"
               onChange={(value) => setCaptchaValue(value)}
             />
           </div>
