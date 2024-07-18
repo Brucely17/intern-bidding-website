@@ -196,6 +196,19 @@ app.post('/bidsearch', async (req, res) => {
   }
 });
 
+app.post('/excelbidsearch', async (req, res) => {
+  const excelData = req.body;
+  console.log(excelData);
+
+  // try{
+
+           
+
+  // } catch(e) {
+  //   console.log('An Error Occured',e)
+  // }
+})
+
 
 // This is regarding bidsearch - search ing and filtering 
 

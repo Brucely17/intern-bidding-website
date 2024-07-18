@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, TextField, Button, Grid, Autocomplete } from '@mui/material';
 import { categories } from './data';
+import * as XLSX from 'xlsx';
 
 const SearchBar = ({ filters, setFilters, handleSearch }) => {
   const handleChange = (event) => {
@@ -11,13 +12,58 @@ const SearchBar = ({ filters, setFilters, handleSearch }) => {
     }));
   };
 
+  const [excelData, setExcelData] = useState([]);
+
   const handleAutoCompleteChange = (event, newValue) => {
-    //prev is used to copy previous values ,so combining this and fileter can be made using this 
     setFilters((prev) => ({
       ...prev,
       productCategory: newValue,
     }));
   };
+
+  
+  async function handleExcelShseetUpload(e) {
+  
+    const file = e.target.files[0];
+    if (!file) {
+      return;
+    }
+  
+    const data = await file.arrayBuffer();
+    const workbook = XLSX.read(data);
+    const workSheet = workbook.Sheets[workbook.SheetNames[0]];
+    const jsonData = XLSX.utils.sheet_to_json(workSheet);
+    const processedData = jsonData.map(data => ({
+      productCategory: data['productCategory'],
+      productTitle: data['productTitle'],
+      totalQty: data['totalQty'],
+    }));
+  
+    console.log(processedData);
+    console.log(filters);
+    setExcelData(prevState => [...prevState, ...processedData]);
+    SendExceDataToServer();
+  }
+
+  async function SendExceDataToServer() {
+    try {
+      const response = await fetch('http://localhost:5000/bidsearch', {
+        method: 'POST',
+        body: JSON.stringify(excelData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      console.log("Data:",data);
+      setBids(data);
+    } catch (error) {
+      console.error('Error fetching bids:', error);
+    }
+  } 
+  
+
+  console.log(excelData);
 
   return (
     <Box sx={{
@@ -27,7 +73,7 @@ const SearchBar = ({ filters, setFilters, handleSearch }) => {
      
     }}>
       <Grid container spacing={2} alignItems="center">
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={2}>
           <Autocomplete
             options={categories}
             getOptionLabel={(option) => option}
@@ -58,7 +104,7 @@ const SearchBar = ({ filters, setFilters, handleSearch }) => {
             )}
           />
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={2}>
           <TextField
             fullWidth
             label="Product Title"
@@ -90,6 +136,8 @@ const SearchBar = ({ filters, setFilters, handleSearch }) => {
           >
             Search
           </Button>
+          <label htmlFor="excelUpload" className='relative top-2 left-5 bg-[#757DE8] px-2 py-2.5 text-white rounded-[4px] shadow-lg text-lg cursor-pointer'>Uplaod xls</label>
+          <input className='hidden' id='excelUpload' type='file' accept='.xlsx, .xls, .csv' onChange={handleExcelShseetUpload}/>
         </Grid>
       </Grid>
     </Box>

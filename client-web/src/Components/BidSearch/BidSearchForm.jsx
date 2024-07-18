@@ -22,6 +22,7 @@ const BidSearchForm = () => {
     bidStatus: 'Published'
   });
 
+
   const [bids, setBids] = useState([]);
 
  
@@ -65,7 +66,7 @@ const BidSearchForm = () => {
     <Box sx={{ display: 'flex' }}>
       <FilterSideBar filters={filters} setFilters={setFilters} />
       <Box  sx={{ flexGrow: 1 }}>
-        <SearchBar filters={filters} setFilters={setFilters} handleSearch={handleSearch} />
+        <SearchBar filters={filters} setFilters={setFilters} handleSearch={handleSearch}/>
         <BidList bids={bids} />
       </Box>
     </Box>
