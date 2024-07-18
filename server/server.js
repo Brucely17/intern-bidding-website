@@ -143,7 +143,7 @@ app.post('/logout', (req, res) => {
 //now stating routing 
 app.post('/bidsearch', async (req, res) => {
   const filters = req.body;
-  console.log("Filters:",filters);
+  // console.log("Filters:",filters);
 
   try {
     const searchQuery = {};
@@ -187,7 +187,7 @@ app.post('/bidsearch', async (req, res) => {
     if (filters.bidStatus) {
       searchQuery.bidStatus = filters.bidStatus;
     }
-    
+    consoile.log("Search query:",searchQuery);
     const results = await bidSearchSchema.find(searchQuery);
     console.log("ResultS;",results);
     res.json(results);
@@ -198,7 +198,65 @@ app.post('/bidsearch', async (req, res) => {
 
 app.post('/excelbidsearch', async (req, res) => {
   const excelData = req.body;
-  console.log(excelData);
+  // console.log(excelData);
+
+ function renderfilter(f){
+
+    const searchQuery = {};
+
+    if (f.productCategory) {
+      searchQuery.productCategory = f.productCategory;
+    }
+    if (f.bidStart) {
+      searchQuery.bidStart = { $gte: new Date(f.bidStart) };
+    }
+    if (f.bidEnd) {
+      searchQuery.bidEnd = { $lte: new Date(f.bidEnd) };
+    }
+    if (f.productTitle) {
+      searchQuery.productTitle = { $regex: f.productTitle, $options: 'i' };
+    }
+    if (f.productDescription) {
+      searchQuery.productDescription = { $regex: f.productDescription, $options: 'i' };
+    }
+    if (f.totalQty) {
+      searchQuery.totalQty = f.totalQty;
+    }
+    if (f.budgetDisclosure) {
+      searchQuery.budgetDisclosure = f.budgetDisclosure;
+    }
+    if (f.budget) {
+      searchQuery.budget = f.budget;
+    }
+    if (f.warrantyType) {
+      searchQuery.warrantyType = f.warrantyType;
+    }
+    if (f.warrantyPeriod) {
+      searchQuery.warrantyPeriod = f.warrantyPeriod;
+    }
+    if (f.vendorLocation) {
+      searchQuery.vendorLocation = f.vendorLocation;
+    }
+    if (f.experienceExceptions) {
+      searchQuery.experienceExceptions = f.experienceExceptions;
+    }
+    if (f.bidStatus) {
+      searchQuery.bidStatus = f.bidStatus;
+    }
+    return searchQuery;
+  }
+
+  const val=excelData.map((f)=>renderfilter(f));
+  console.log('result:',val);
+
+  const query={
+    $or:val
+  }
+
+const results = await bidSearchSchema.find(query);
+    console.log("ResultS;",results);
+    res.json(results);
+    
 
   // try{
 
