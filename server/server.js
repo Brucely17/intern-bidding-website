@@ -143,7 +143,7 @@ app.post('/logout', (req, res) => {
 //now stating routing 
 app.post('/bidsearch', async (req, res) => {
   const filters = req.body;
-  // console.log("Filters:",filters);
+  console.log("Filters:",filters);
 
   try {
     const searchQuery = {};
@@ -187,7 +187,7 @@ app.post('/bidsearch', async (req, res) => {
     if (filters.bidStatus) {
       searchQuery.bidStatus = filters.bidStatus;
     }
-    consoile.log("Search query:",searchQuery);
+    console.log("Search query:",searchQuery);
     const results = await bidSearchSchema.find(searchQuery);
     console.log("ResultS;",results);
     res.json(results);
@@ -198,7 +198,7 @@ app.post('/bidsearch', async (req, res) => {
 
 app.post('/excelbidsearch', async (req, res) => {
   const excelData = req.body;
-  // console.log(excelData);
+  console.log(excelData);
 
  function renderfilter(f){
 
